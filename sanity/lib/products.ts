@@ -18,12 +18,9 @@ export const getProducts = async (): Promise<Product[]> => {
   }`;
 
   try {
-    // Use CDN client with caching for guest users
+    // Fetch without caching for immediate data
     const products = await client.fetch(query, undefined, {
-      next: {
-        revalidate: PRODUCTS_CACHE_DURATION, // Cache for 1 hour
-        tags: ["products"], // Tag for on-demand revalidation
-      },
+      cache: 'no-store', // Disable caching
     });
     console.log("[getProducts] Fetched", products?.length || 0, "products");
     // Force serialization to ensure plain objects are returned to client components

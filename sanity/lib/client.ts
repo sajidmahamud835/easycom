@@ -7,7 +7,8 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // ✅ Enable CDN for faster guest user reads
+  useCdn: false, // 🔄 Disabled CDN to get fresh data immediately
+  token: process.env.SANITY_API_TOKEN, // Add token for full access
   stega: {
     studioUrl:
       process.env.NODE_ENV === "production"

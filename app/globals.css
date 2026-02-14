@@ -17,13 +17,13 @@
   --popover: #ffffff;
   --popover-foreground: #0F1111;
 
-  --primary: #232F3E;
-  /* Amazon Dark Blue Header */
+  --primary: #000000;
+  /* Black Header */
   --primary-foreground: #ffffff;
 
-  --secondary: #FEBD69;
-  /* Amazon Orange Action */
-  --secondary-foreground: #0F1111;
+  --secondary: #D4AF37;
+  /* Gold Action */
+  --secondary-foreground: #000000;
 
   --muted: #E5E7EB;
   --muted-foreground: #565959;
@@ -53,14 +53,16 @@
   --sidebar-ring: #FF9900;
 
   /* Custom Shop Theme Colors - Available in Light Mode */
-  --shop-dark-green: #047857;
-  /* Emerald 700 */
-  --shop-light-green: #10b981;
-  /* Emerald 500 */
-  --shop-light-bg: #ecfdf5;
-  /* Emerald 50 */
-  --shop-light-pink: #fdf2f8;
-  /* Pink 50 */
+  --shop-dark-green: #000000;
+  /* Black */
+  --shop-light-green: #D4AF37;
+  /* Gold */
+  --shop-light-bg: #F3F4F6;
+  /* Light Gray */
+  --shop-light-pink: #FFFBE6;
+  /* Light Gold/Yellow */
+  --shop-orange: #D4AF37;
+  /* Gold */
 }
 
 @theme inline {
@@ -100,9 +102,9 @@
   --card-foreground: #ffffff;
   --popover: #1B1F23;
   --popover-foreground: #ffffff;
-  --primary: #232F3E;
+  --primary: #000000;
   --primary-foreground: #ffffff;
-  --secondary: #FEBD69;
+  --secondary: #D4AF37;
   --secondary-foreground: #000000;
   --muted: #374151;
   --muted-foreground: #9CA3AF;
@@ -123,14 +125,16 @@
   --sidebar-ring: #3b82f6;
 
   /* Custom Shop Theme Colors */
-  --shop-dark-green: #047857;
-  /* Emerald 700 */
-  --shop-light-green: #10b981;
-  /* Emerald 500 */
-  --shop-light-bg: #ecfdf5;
-  /* Emerald 50 */
-  --shop-light-pink: #fdf2f8;
-  /* Pink 50 */
+  --shop-dark-green: #000000;
+  /* Black */
+  --shop-light-green: #D4AF37;
+  /* Gold */
+  --shop-light-bg: #1f2937;
+  /* Dark Gray */
+  --shop-light-pink: #1B1F23;
+  /* Dark BG */
+  --shop-orange: #D4AF37;
+  /* Gold */
 }
 
 @theme inline {
@@ -167,6 +171,7 @@
   --color-shop_light_green: var(--shop-light-green);
   --color-shop_light_bg: var(--shop-light-bg);
   --color-shop_light_pink: var(--shop-light-pink);
+  --color-shop_orange: var(--shop-orange);
 }
 
 body {

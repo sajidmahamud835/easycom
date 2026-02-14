@@ -31,10 +31,10 @@ const Logo = ({ className, variant = "default" }: Props) => {
           <div className="flex items-center">
             <h1 className="text-sm font-black tracking-wider uppercase font-sans">
               <span className="text-shop_dark_green group-hover:text-shop_light_green hoverEffect">
-                Easy
+                Sadun
               </span>
               <span className="bg-gradient-to-r from-shop_light_green to-shop_orange bg-clip-text text-transparent group-hover:from-shop_dark_green group-hover:to-shop_light_green hoverEffect">
-                Com
+                Shop
               </span>
             </h1>
 
@@ -68,10 +68,10 @@ const Logo = ({ className, variant = "default" }: Props) => {
         <div className="flex items-center">
           <h1 className="text-2xl font-black tracking-wider uppercase font-sans">
             <span className="text-shop_dark_green group-hover:text-shop_light_green hoverEffect">
-              Easy
+              Sadun
             </span>
             <span className="bg-gradient-to-r from-shop_light_green to-shop_orange bg-clip-text text-transparent group-hover:from-shop_dark_green group-hover:to-shop_light_green hoverEffect">
-              Com
+              Shop
             </span>
           </h1>
 

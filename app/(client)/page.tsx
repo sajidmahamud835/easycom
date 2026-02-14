@@ -1,170 +1,74 @@
-﻿import HomeBanner from "@/components/HomeBanner";
-import ProductCard from "@/components/ProductCard";
+﻿import ProductCard from "@/components/ProductCard";
 import { getProducts } from "@/sanity/lib/products";
 import Link from "next/link";
-import { ArrowRight, Zap, Gift, Cpu, Sparkles } from "lucide-react";
-
-import TodaysDeals from "@/components/TodaysDeals";
-import RecommendedProducts from "@/components/RecommendedProducts";
+import { ArrowRight, TrendingUp } from "lucide-react";
 
 export default async function Home() {
     const products = await getProducts();
 
+    // Debug logging
+    console.log('🔍 Homepage - Products fetched:', products?.length || 0);
+    console.log('🔍 First product:', products?.[0]);
+
     return (
-        <div className="bg-gradient-to-b from-slate-50 via-white to-slate-50 min-h-screen pb-16">
-            <HomeBanner />
-
-            <TodaysDeals fallbackProducts={products} />
-
-            <div className="max-w-[1500px] mx-auto px-4 -mt-10 md:-mt-24 relative z-30 mb-8 space-y-8">
-
-                {/* Feature Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-
-                    {/* Card 1: Today's Deals */}
-                    <div className="bg-white rounded-2xl p-5 shadow-lg shadow-gray-100/50 hover:shadow-xl transition-all duration-300 flex flex-col h-[320px] group overflow-hidden">
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="p-2 bg-rose-100 rounded-xl">
-                                <Zap className="w-5 h-5 text-rose-600" />
-                            </div>
-                            <h3 className="font-bold text-lg text-gray-800">Today's Deals</h3>
-                        </div>
-                        <div className="flex-1 rounded-xl overflow-hidden mb-3 relative">
-                            <div
-                                className="absolute inset-0 bg-cover bg-center transform group-hover:scale-105 transition-transform duration-500"
-                                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=400')" }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                            <div className="absolute bottom-3 left-3 right-3">
-                                <span className="bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                    Up to 50% OFF
-                                </span>
-                            </div>
-                        </div>
-                        <Link href="/shop" className="flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium group/link">
-                            See all deals
-                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                    </div>
-
-                    {/* Card 2: New Arrivals */}
-                    <div className="bg-white rounded-2xl p-5 shadow-lg shadow-gray-100/50 hover:shadow-xl transition-all duration-300 flex flex-col h-[320px] group overflow-hidden">
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="p-2 bg-emerald-100 rounded-xl">
-                                <Gift className="w-5 h-5 text-emerald-600" />
-                            </div>
-                            <h3 className="font-bold text-lg text-gray-800">New Arrivals</h3>
-                        </div>
-                        <div className="flex-1 rounded-xl overflow-hidden mb-3 relative">
-                            <div
-                                className="absolute inset-0 bg-cover bg-center transform group-hover:scale-105 transition-transform duration-500"
-                                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=400')" }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                            <div className="absolute bottom-3 left-3 right-3">
-                                <span className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                    Just Landed
-                                </span>
-                            </div>
-                        </div>
-                        <Link href="/shop" className="flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium group/link">
-                            Explore new products
-                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                    </div>
-
-                    {/* Card 3: Electronics */}
-                    <div className="bg-white rounded-2xl p-5 shadow-lg shadow-gray-100/50 hover:shadow-xl transition-all duration-300 flex flex-col h-[320px] group overflow-hidden">
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="p-2 bg-blue-100 rounded-xl">
-                                <Cpu className="w-5 h-5 text-blue-600" />
-                            </div>
-                            <h3 className="font-bold text-lg text-gray-800">Electronics</h3>
-                        </div>
-                        <div className="flex-1 rounded-xl overflow-hidden mb-3 relative">
-                            <div
-                                className="absolute inset-0 bg-cover bg-center transform group-hover:scale-105 transition-transform duration-500"
-                                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?auto=format&fit=crop&q=80&w=400')" }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                            <div className="absolute bottom-3 left-3 right-3">
-                                <span className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                                    Top Rated
-                                </span>
-                            </div>
-                        </div>
-                        <Link href="/category/electronics" className="flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium group/link">
-                            Shop electronics
-                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                    </div>
-
-                    {/* Card 4: Sign In CTA */}
-                    <div className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-[320px] justify-center text-white relative overflow-hidden">
-                        {/* Decorative elements */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
-
-                        <div className="relative z-10 flex flex-col items-center text-center">
-                            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                                <Sparkles className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="font-bold text-xl mb-2">Get Personalized Deals</h3>
-                            <p className="text-white/80 text-sm mb-5">Sign in for exclusive offers tailored just for you</p>
-                            <Link
-                                href="/sign-in"
-                                className="w-full bg-white text-indigo-600 font-bold py-3 px-6 rounded-xl hover:bg-gray-100 transition-all shadow-lg text-center"
-                            >
-                                Sign In
-                            </Link>
-                            <div className="text-xs text-white/70 mt-3">
-                                New here? <Link href="/sign-up" className="text-white underline hover:no-underline">Create account</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Products Section 1 */}
-                <div className="bg-white rounded-2xl p-6 shadow-lg shadow-gray-100/50">
-                    <div className="flex items-center justify-between mb-5">
+        <div className="bg-white min-h-screen">
+            {/* Trending Products */}
+            <section className="py-16">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center gap-3">
-                            <div className="w-1 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full" />
-                            <h2 className="text-xl font-bold text-gray-800">Trending Now</h2>
+                            <TrendingUp className="w-6 h-6 text-[#D4AF37]" />
+                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Trending Now</h2>
                         </div>
-                        <Link href="/shop" className="flex items-center gap-1 text-sm text-indigo-600 hover:text-indigo-800 font-medium group">
+                        <Link href="/shop" className="flex items-center gap-1 text-gray-600 hover:text-[#D4AF37] font-medium transition-colors group">
                             View all
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+                    {/* Debug Info */}
+                    <div className="mb-4 p-4 bg-gray-100 rounded">
+                        <p className="text-sm">Debug: Found {products?.length || 0} products</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                         {products?.slice(0, 10).map((product) => (
                             <ProductCard key={product?._id} product={product} />
                         ))}
                     </div>
-                </div>
 
-                {/* Featured Banner */}
-                <div className="relative rounded-2xl overflow-hidden h-32 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-between px-8 shadow-lg">
-                    <div className="relative z-10">
-                        <h3 className="text-white font-bold text-2xl mb-1">Free Shipping on Orders $50+</h3>
-                        <p className="text-white/80 text-sm">Limited time offer. Shop now and save on delivery!</p>
+                    {/* Show message if no products */}
+                    {(!products || products.length === 0) && (
+                        <div className="text-center py-12">
+                            <p className="text-gray-500 text-lg">No products found. Checking database...</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* CTA Banner */}
+            <section className="max-w-7xl mx-auto px-4 py-16">
+                <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#D4AF37] to-[#C4A027] p-12 md:p-16 text-center">
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20" />
                     </div>
-                    <Link
-                        href="/shop"
-                        className="relative z-10 bg-white text-indigo-600 font-bold py-3 px-6 rounded-xl hover:bg-gray-100 transition-all shadow-lg"
-                    >
-                        Shop Now
-                    </Link>
-                    {/* Decorative circles */}
-                    <div className="absolute right-20 top-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2" />
-                    <div className="absolute left-1/3 bottom-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2" />
+                    <div className="relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                            Get 20% Off Your First Order
+                        </h2>
+                        <p className="text-black/80 mb-8 text-lg">
+                            Sign up for exclusive deals and early access to new collections
+                        </p>
+                        <Link
+                            href="/sign-up"
+                            className="bg-black text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-900 transition-all inline-flex items-center gap-2 shadow-lg"
+                        >
+                            Sign Up Now
+                            <ArrowRight className="w-5 h-5" />
+                        </Link>
+                    </div>
                 </div>
-
-                {/* Dynamic Recommended Products */}
-                <RecommendedProducts />
-
-            </div>
+            </section>
         </div>
     );
 }

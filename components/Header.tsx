@@ -1,163 +1,133 @@
 ﻿"use client";
 
 import Link from "next/link";
-import {
-  Search,
-  ShoppingCart,
-  MapPin,
-  ChevronDown
-} from "lucide-react";
+import { Search, ShoppingCart, User, Phone } from "lucide-react";
 import { useState } from "react";
-
-import useLocation from "./hooks/useLocation";
-import { Category } from "@/sanity.types";
-// SideMenu removed
-import LocationModal from "./LocationModal";
-import { SignInButton, useUser } from "@clerk/nextjs";
-import UserDropdown from "./UserDropdown";
+import { useUser, SignInButton, UserButton, ClerkLoaded } from "@clerk/nextjs";
 import useCartStore from "@/store";
 
-
-interface Props {
-  categories?: Category[];
-}
-
-const Header = ({ categories = [] }: Props) => {
-  const [category, setCategory] = useState("All");
-  const { location, loading, updateLocation } = useLocation();
-  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+const Header = () => {
   const { user } = useUser();
   const { items } = useCartStore();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Women's clothing categories
+  const categories = [
+    { name: "New Arrivals", href: "/shop?filter=new" },
+    { name: "Dresses", href: "/category/dresses" },
+    { name: "Tops", href: "/category/tops" },
+    { name: "Bottoms", href: "/category/bottoms" },
+    { name: "Outerwear", href: "/category/outerwear" },
+    { name: "Accessories", href: "/category/accessories" },
+    { name: "Activewear", href: "/category/activewear" },
+    { name: "Sale", href: "/shop?filter=sale" },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 w-full shadow-md">
-      {/* Top Bar - Dark Blue */}
-      <div className="bg-[#131921] text-white flex items-center gap-2 md:gap-4 px-2 md:px-4 py-2 text-sm h-[60px]">
-        {/* Logo */}
-        <Link href="/" className="flex items-center hover:ring-1 hover:ring-white p-1 rounded-sm transition-all">
-          <span className="text-xl md:text-2xl font-bold tracking-tighter">Easy<span className="text-[#febd69]">Com</span></span>
-        </Link>
-
-        {/* Delivery Location - Hidden on small mobile */}
-        <div
-          className="hidden lg:flex flex-col items-start hover:ring-1 hover:ring-white p-1 rounded-md cursor-pointer leading-tight transition-all min-w-[100px]"
-          onClick={() => setIsLocationModalOpen(true)}
-        >
-          <span className="text-gray-300 text-xs ml-4">Deliver to</span>
-          <div className="flex items-center font-bold">
-            <MapPin className="w-4 h-4 mr-1" />
-            <span>
-              {loading ? "Loading..." : location?.country || "Select Location"}
-            </span>
-          </div>
+    <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
+      {/* Top Contact Bar */}
+      <div className="bg-[#FF9800] text-white py-2 px-4 text-xs sm:text-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
+          <Phone className="w-4 h-4" />
+          <span>Need help? Call us: +880 1234-567890</span>
         </div>
+      </div>
 
-        {/* Search Bar - Flex grow */}
-        <div className="flex-1 flex h-10 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-[#febd69]">
-          <div className="bg-gray-100 text-gray-700 hidden md:flex items-center px-3 border-r border-gray-300 cursor-pointer hover:bg-gray-200 transition-colors group relative">
-            <span className="text-xs w-auto max-w-[100px] truncate">{category}</span>
-            <ChevronDown className="w-3 h-3 ml-1" />
+      {/* Main Header */}
+      <div className="border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo - Center */}
+            <div className="flex-1 flex justify-start lg:justify-center">
+              <Link href="/" className="flex items-center">
+                <span className="text-2xl font-bold tracking-wider">
+                  Sadun<span className="text-[#D4AF37]">Shop</span>
+                </span>
+              </Link>
+            </div>
 
-            {/* Dropdown Menu */}
-            <div className="absolute top-full left-0 w-48 bg-white border border-gray-200 shadow-lg rounded-b-md hidden group-hover:block z-50 max-h-64 overflow-y-auto">
-              <div
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-xs"
-                onClick={() => setCategory("All")}
+            {/* Right Actions */}
+            <div className="flex items-center gap-4">
+              {/* Search */}
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="hover:text-[#D4AF37] transition-colors"
+                aria-label="Search"
               >
-                All Departments
-              </div>
-              {categories.map((cat) => (
-                <div
-                  key={cat._id}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-xs"
-                  onClick={() => setCategory(cat.title || "Unknown")}
-                >
-                  {cat.title}
-                </div>
-              ))}
-            </div>
-          </div>
-          <input
-            type="text"
-            className="flex-1 px-3 text-white outline-none placeholder:text-gray-400 h-full bg-transparent"
-          />
-          <button className="bg-[#febd69] hover:bg-[#f3a847] px-4 flex items-center justify-center transition-colors">
-            <Search className="w-5 h-5 text-gray-800" />
-          </button>
-        </div>
+                <Search className="w-5 h-5" />
+              </button>
 
+              {/* User */}
+              <ClerkLoaded>
+                {user ? (
+                  <UserButton
+                    afterSignOutUrl="/"
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-8 h-8 hover:ring-2 hover:ring-[#D4AF37] transition-all"
+                      }
+                    }}
+                  />
+                ) : (
+                  <SignInButton mode="modal">
+                    <button className="hover:text-[#D4AF37] transition-colors" aria-label="Sign In">
+                      <User className="w-5 h-5" />
+                    </button>
+                  </SignInButton>
+                )}
+              </ClerkLoaded>
 
-        {/* Account */}
-        {user ? (
-          <div className="hidden md:flex items-center">
-            <UserDropdown
-              trigger={
-                <div className="flex flex-col leading-tight hover:ring-1 hover:ring-white p-2 rounded-sm cursor-pointer text-xs transition-all">
-                  <span className="text-white">Hello, {user.firstName}</span>
-                  <span className="font-bold text-sm flex items-center">
-                    Account & Lists <ChevronDown className="w-3 h-3 ml-1 opacity-70" />
+              {/* Cart */}
+              <Link href="/cart" className="relative group">
+                <ShoppingCart className="w-5 h-5 group-hover:text-[#D4AF37] transition-colors" />
+                {items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-[#D4AF37] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {items.length}
                   </span>
-                </div>
-              }
-            />
-          </div>
-        ) : (
-          <SignInButton mode="modal">
-            <div className="hidden md:flex flex-col leading-tight hover:ring-1 hover:ring-white p-2 rounded-sm cursor-pointer text-xs transition-all">
-              <span className="text-white">Hello, sign in</span>
-              <span className="font-bold text-sm flex items-center">
-                Account & Lists <ChevronDown className="w-3 h-3 ml-1 opacity-70" />
-              </span>
+                )}
+              </Link>
             </div>
-          </SignInButton>
-        )}
-
-        {/* Orders */}
-        <Link
-          href={user ? "/user/orders" : "/sign-in"}
-          className="hidden md:flex flex-col leading-tight hover:ring-1 hover:ring-white p-2 rounded-sm cursor-pointer text-xs transition-all"
-        >
-          <span className="text-white">Returns</span>
-          <span className="font-bold text-sm">& Orders</span>
-        </Link>
-
-        {/* Cart */}
-        <Link href="/cart" className="flex items-end font-bold hover:ring-1 hover:ring-white p-2 rounded-sm relative transition-all">
-          <div className="relative">
-            <ShoppingCart className="w-8 h-8" />
-            <span className="absolute -top-1 left-1/2 -translate-x-1/2 text-[#f08804] text-lg font-bold">{items.length}</span>
           </div>
-          <span className="hidden xl:inline mb-1 ml-1 text-sm">Cart</span>
-        </Link>
+        </div>
       </div>
 
-      {/* Bottom Bar - Darker Gray/Blue */}
-      <div className="bg-[#232f3e] text-white flex items-center gap-4 px-4 py-1.5 text-sm h-[40px] overflow-x-auto no-scrollbar">
-        {/* SideMenu removed as per user request */}
-        <Link href="/deal" className="whitespace-nowrap hover:ring-1 hover:ring-white px-2 py-1 rounded-sm transition-all">
-          Today&apos;s Deals
-        </Link>
-        <Link href="/support" className="whitespace-nowrap hover:ring-1 hover:ring-white px-2 py-1 rounded-sm transition-all">
-          Customer Service
-        </Link>
-        <Link href="/track-order" className="whitespace-nowrap hover:ring-1 hover:ring-white px-2 py-1 rounded-sm transition-all">
-          Track My Product
-        </Link>
-        <Link href="/gift-cards" className="whitespace-nowrap hover:ring-1 hover:ring-white px-2 py-1 rounded-sm transition-all">
-          Gift Cards
-        </Link>
-        <Link href="/sell" className="whitespace-nowrap hover:ring-1 hover:ring-white px-2 py-1 rounded-sm transition-all">
-          Become a Seller
-        </Link>
+      {/* Category Navigation Bar */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <nav className="flex items-center justify-center gap-6 py-3 overflow-x-auto">
+            {categories.map((category) => (
+              <Link
+                key={category.name}
+                href={category.href}
+                className="text-sm font-medium text-gray-700 hover:text-[#D4AF37] whitespace-nowrap transition-colors relative group"
+              >
+                {category.name}
+                <span className="absolute -bottom-3 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all group-hover:w-full" />
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
 
-      <LocationModal
-        isOpen={isLocationModalOpen}
-        onOpenChange={setIsLocationModalOpen}
-        onUpdateLocation={updateLocation}
-        currentLocation={location}
-      />
-    </header >
+      {/* Expandable Search Bar */}
+      {isSearchOpen && (
+        <div className="bg-gray-50 border-b border-gray-200 p-4">
+          <form action="/shop" className="max-w-2xl mx-auto relative">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search for dresses, tops, accessories..."
+              className="w-full bg-white border border-gray-300 rounded-full px-6 py-3 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+              autoFocus
+            />
+            <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#D4AF37]">
+              <Search className="w-5 h-5" />
+            </button>
+          </form>
+        </div>
+      )}
+    </header>
   );
 };
+
 export default Header;

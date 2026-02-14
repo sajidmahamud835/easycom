@@ -34,11 +34,11 @@ const opensans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://sajidmahamud.vercel.app"),
   title: {
-    template: "%s | EasyCom - Capstone E-Commerce Project",
-    default: "EasyCom - Capstone E-Commerce Project",
+    template: "%s | Sadunshop - Your Premium Shopping Destination",
+    default: "Sadunshop - Your Premium Shopping Destination",
   },
   description:
-    "EasyCom is a capstone e-commerce project (not production-grade). Some features are under development.",
+    "Sadunshop is your premium shopping destination. Shop the best deals on electronics, fashion, home goods and more.",
   keywords: [
     "online shopping",
     "e-commerce",
@@ -49,11 +49,11 @@ export const metadata: Metadata = {
     "home goods",
     "deals",
     "discounts",
-    "EasyCom",
+    "Sadunshop",
   ],
-  authors: [{ name: "EasyCom" }],
-  creator: "EasyCom",
-  publisher: "EasyCom",
+  authors: [{ name: "Sadunshop" }],
+  creator: "Sadunshop",
+  publisher: "Sadunshop",
   formatDetection: {
     email: false,
     address: false,
@@ -62,27 +62,27 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_BASE_URL || "https://sajidmahamud.vercel.app",
-    siteName: "EasyCom",
-    title: "EasyCom - Capstone E-Commerce Project",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://sadunshop.com",
+    siteName: "Sadunshop",
+    title: "Sadunshop - Your Premium Shopping Destination",
     description:
-      "EasyCom is a capstone e-commerce project (not production-grade). Some features are under development.",
+      "Sadunshop is your premium shopping destination.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "EasyCom - Capstone Project",
+        alt: "Sadunshop",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EasyCom - Capstone E-Commerce Project",
+    title: "Sadunshop - Your Premium Shopping Destination",
     description:
-      "EasyCom is a capstone e-commerce project (not production-grade).",
+      "Sadunshop is your premium shopping destination.",
     images: ["/og-image.jpg"],
-    creator: "@easycom",
+    creator: "@sadunshop",
   },
 
   robots: {
@@ -106,20 +106,20 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://easycom-opal.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://sadunshop.com";
 
   // Organization Schema for SEO
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "EasyCom",
+    name: "Sadunshop",
     url: baseUrl,
     logo: `${baseUrl}/icon.png`,
-    description: "AI-Powered Next.js E-Commerce Platform with personalized recommendations and modern shopping experience.",
+    description: "Your premium shopping destination.",
     sameAs: [
-      "https://twitter.com/easycom",
-      "https://facebook.com/easycom",
-      "https://instagram.com/easycom",
+      "https://twitter.com/sadunshop",
+      "https://facebook.com/sadunshop",
+      "https://instagram.com/sadunshop",
     ],
   };
 
@@ -127,9 +127,9 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "EasyCom",
+    name: "Sadunshop",
     url: baseUrl,
-    description: "Shop the best deals on electronics, fashion, home goods and more at EasyCom.",
+    description: "Shop the best deals on electronics, fashion, home goods and more at Sadunshop.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
