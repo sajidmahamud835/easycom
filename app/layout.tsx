@@ -32,13 +32,13 @@ const opensans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://sajidmahamud.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://sadunshop.com"),
   title: {
-    template: "%s | Sadunshop - Your Premium Shopping Destination",
-    default: "Sadunshop - Your Premium Shopping Destination",
+    template: "%s | SadunShop - Women's Fashion Boutique",
+    default: "SadunShop - Women's Fashion Boutique",
   },
   description:
-    "Sadunshop is your premium shopping destination. Shop the best deals on electronics, fashion, home goods and more.",
+    "SadunShop is your premium women's fashion boutique. Shop the latest styles in dresses, tops, bottoms, and accessories.",
   keywords: [
     "online shopping",
     "e-commerce",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     "discounts",
     "Sadunshop",
   ],
-  authors: [{ name: "Sadunshop" }],
-  creator: "Sadunshop",
-  publisher: "Sadunshop",
+  authors: [{ name: "SadunShop" }],
+  creator: "SadunShop",
+  publisher: "SadunShop",
   formatDetection: {
     email: false,
     address: false,
@@ -63,24 +63,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://sadunshop.com",
-    siteName: "Sadunshop",
-    title: "Sadunshop - Your Premium Shopping Destination",
+    siteName: "SadunShop",
+    title: "SadunShop - Women's Fashion Boutique",
     description:
-      "Sadunshop is your premium shopping destination.",
+      "SadunShop is your premium women's fashion boutique.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Sadunshop",
+        alt: "SadunShop",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sadunshop - Your Premium Shopping Destination",
+    title: "SadunShop - Women's Fashion Boutique",
     description:
-      "Sadunshop is your premium shopping destination.",
+      "SadunShop is your premium women's fashion boutique.",
     images: ["/og-image.jpg"],
     creator: "@sadunshop",
   },
@@ -112,10 +112,10 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Sadunshop",
+    name: "SadunShop",
     url: baseUrl,
     logo: `${baseUrl}/icon.png`,
-    description: "Your premium shopping destination.",
+    description: "Your premium women's fashion boutique.",
     sameAs: [
       "https://twitter.com/sadunshop",
       "https://facebook.com/sadunshop",
@@ -127,9 +127,9 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Sadunshop",
+    name: "SadunShop",
     url: baseUrl,
-    description: "Shop the best deals on electronics, fashion, home goods and more at Sadunshop.",
+    description: "Shop the latest women's fashion at SadunShop - dresses, tops, bottoms, and accessories.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
